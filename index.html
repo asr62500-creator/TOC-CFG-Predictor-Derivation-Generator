@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>CFG Predictor & Derivation</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <div class="container">
+
+        <h1>Context-Free Grammar Validator</h1>
+
+        <p class="subtitle">
+            Validate strings and generate derivations from a Context-Free Grammar
+        </p>
+
+
+        <!-- Grammar Section -->
+        <div class="card">
+
+            <h2>1. Enter Grammar</h2>
+
+            <label for="grammar">
+                Production Rules
+            </label>
+
+            <textarea
+                id="grammar"
+                placeholder="Example:
+S -> aSb
+S -> ε"></textarea>
+
+
+            <label for="startSymbol">
+                Start Symbol
+            </label>
+
+            <input
+                type="text"
+                id="startSymbol"
+                placeholder="Example: S"
+                maxlength="1">
+
+        </div>
+
+
+        <!-- Input String Section -->
+        <div class="card">
+
+            <h2>2. Input String</h2>
+
+            <input
+                type="text"
+                id="inputString"
+                placeholder="Enter string to validate">
+
+        </div>
+
+
+        <!-- Buttons -->
+        <div class="buttons">
+
+            <button id="validateBtn">
+                Validate String
+            </button>
+
+            <button id="clearBtn">
+                Clear
+            </button>
+
+        </div>
+
+
+        <!-- Result Section -->
+        <div class="card result-card">
+
+            <h2>3. Result</h2>
+
+            <div id="result">
+                Enter a grammar and input string.
+            </div>
+
+        </div>
+
+
+        <!-- Derivation Section -->
+        <!-- Derivation Section -->
+        <div class="card">
+
+            <h2>4. Derivation</h2>
+
+
+            <h3>Leftmost Derivation</h3>
+
+            <div id="leftmostDerivation">
+            Leftmost derivation will appear here.
+            </div>
+
+
+            <h3>Rightmost Derivation</h3>
+
+            <div id="rightmostDerivation">
+            Rightmost derivation will appear here.
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <script src="Algorithms/validator.js"></script>
+    <script src="Algorithms/derivation.js"></script>
+    <script src="script.js"></script>
+
+</body>
+
+</html>
