@@ -4,10 +4,77 @@ const MAX_INPUT = 40;
 const MAX_WORK = 3000000;          // safety limit so a pathological grammar cannot freeze the tab
 
 const examples = {
-  anbn: { grammar: "S -> aSb\nS -> ε", start: "S", input: "aaabbb" },
-  parentheses: { grammar: "S -> (S)S\nS -> ε", start: "S", input: "(()())" },
-  palindrome: { grammar: "S -> aSa | bSb | a | b | ε", start: "S", input: "abba" },
-  arithmetic: { grammar: "E -> E+T | T\nT -> T*F | F\nF -> (E) | i", start: "E", input: "i+i*(i+i)" }
+    anbn: {
+        grammar: "S -> aSb\nS -> ε",
+        start: "S",
+        input: "aaabbb"
+    },
+
+    parentheses: {
+        grammar: "S -> (S)S\nS -> ε",
+        start: "S",
+        input: "(()())"
+    },
+
+    palindrome: {
+        grammar: "S -> aSa | bSb | a | b | ε",
+        start: "S",
+        input: "abba"
+    },
+
+    arithmetic: {
+        grammar: "E -> E+T | T\nT -> T*F | F\nF -> (E) | i",
+        start: "E",
+        input: "i+i*(i+i)"
+    },
+
+    equalAnyOrder: {
+        grammar: "S -> aSbS | bSaS | ε",
+        start: "S",
+        input: "abba"
+    },
+
+    oddAs: {
+        grammar: "S -> bS | aT | ε\nT -> bT | aS",
+        start: "S",
+        input: "abb"
+    },
+
+    evenAs: {
+        grammar: "S -> bS | aT | ε\nT -> bT | aS",
+        start: "T",
+        input: "abba"
+    },
+
+    endsInA: {
+        grammar: "S -> aS | bS | a",
+        start: "S",
+        input: "bba"
+    },
+
+    containsAB: {
+        grammar: "S -> XabX\nX -> aX | bX | ε",
+        start: "S",
+        input: "baab"
+    },
+
+    onlyAs: {
+        grammar: "S -> aS | ε",
+        start: "S",
+        input: "aaaa"
+    },
+
+    startsWithA: {
+        grammar: "S -> aX\nX -> aX | bX | ε",
+        start: "S",
+        input: "abba"
+    },
+
+    noConsecutiveAs: {
+        grammar: "S -> bS | aT | ε\nT -> bS | ε",
+        start: "S",
+        input: "abab"
+    }
 };
 
 // ---------- events ----------
