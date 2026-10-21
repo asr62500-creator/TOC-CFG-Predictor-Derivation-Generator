@@ -1,124 +1,91 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-    <meta charset="UTF-8">
-
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <title>CFG Predictor & Derivation</title>
-
-    <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Context-Free Grammar Validator</title>
+  <link rel="stylesheet" href="style.css">
 </head>
-
 <body>
-
-    <div class="container">
-
-        <h1>Context-Free Grammar Validator</h1>
-
-        <p class="subtitle">
-            Validate strings and generate derivations from a Context-Free Grammar
-        </p>
-
-
-        <!-- Grammar Section -->
-        <div class="card">
-
-            <h2>1. Enter Grammar</h2>
-
-            <label for="grammar">
-                Production Rules
-            </label>
-
-            <textarea
-                id="grammar"
-                placeholder="Example:
-S -> aSb
-S -> ε"></textarea>
-
-
-            <label for="startSymbol">
-                Start Symbol
-            </label>
-
-            <input
-                type="text"
-                id="startSymbol"
-                placeholder="Example: S"
-                maxlength="1">
-
-        </div>
-
-
-        <!-- Input String Section -->
-        <div class="card">
-
-            <h2>2. Input String</h2>
-
-            <input
-                type="text"
-                id="inputString"
-                placeholder="Enter string to validate">
-
-        </div>
-
-
-        <!-- Buttons -->
-        <div class="buttons">
-
-            <button id="validateBtn">
-                Validate String
-            </button>
-
-            <button id="clearBtn">
-                Clear
-            </button>
-
-        </div>
-
-
-        <!-- Result Section -->
-        <div class="card result-card">
-
-            <h2>3. Result</h2>
-
-            <div id="result">
-                Enter a grammar and input string.
-            </div>
-
-        </div>
-
-
-        <!-- Derivation Section -->
-        <!-- Derivation Section -->
-        <div class="card">
-
-            <h2>4. Derivation</h2>
-
-
-            <h3>Leftmost Derivation</h3>
-
-            <div id="leftmostDerivation">
-            Leftmost derivation will appear here.
-            </div>
-
-
-            <h3>Rightmost Derivation</h3>
-
-            <div id="rightmostDerivation">
-            Rightmost derivation will appear here.
-            </div>
-
-        </div>
-
+  <header class="top">
+    <div class="wrap">
+      <h1>Context-Free Grammar Validator</h1>
+      <p class="lead">Check whether a string can be derived from a grammar, then study its derivations and parse tree.</p>
+      <div class="motif" aria-hidden="true">S ⇒ <mark>aSb</mark> ⇒ a<mark>aSb</mark>b ⇒ aa<mark>ε</mark>bb</div>
     </div>
+  </header>
 
+  <main class="wrap flow">
 
-    <script src="Algorithms/validator.js"></script>
-    <script src="Algorithms/derivation.js"></script>
-    <script src="script.js"></script>
+    <section class="step">
+      <div class="card">
+        <h2>Enter Grammar</h2>
 
+        <label for="examples">Load an example (optional)</label>
+        <select id="examples">
+          <option value="">Choose an example</option>
+          <option value="anbn">Equal a's followed by b's</option>
+          <option value="parentheses">Balanced parentheses</option>
+          <option value="palindrome">Palindromes over {a, b}</option>
+          <option value="arithmetic">Arithmetic expressions</option>
+        </select>
+
+        <div class="label-row">
+          <label for="grammar">Production Rules</label>
+          <button type="button" id="epsBtn" class="small" title="Insert the empty-string symbol">Insert ε</button>
+        </div>
+        <textarea id="grammar" spellcheck="false" placeholder="S -> aSb&#10;S -> ε"></textarea>
+        <p class="hint">One rule per line. Use | for alternatives and ε (or eps) for the empty string. Non-terminals are single uppercase letters; everything else is a terminal.</p>
+
+        <label for="startSymbol">Start Symbol</label>
+        <input id="startSymbol" maxlength="1" value="S" placeholder="S" autocomplete="off">
+      </div>
+    </section>
+
+    <section class="step">
+      <div class="card">
+        <h2>Input String</h2>
+        <label for="inputString">String to test</label>
+        <div class="input-row">
+          <input id="inputString" placeholder="e.g. aaabbb (leave empty to test ε)" autocomplete="off" spellcheck="false">
+          <div class="actions">
+            <button id="validateBtn">Validate String</button>
+            <button id="clearBtn" class="secondary">Clear</button>
+          </div>
+        </div>
+        <p class="hint">Spaces are ignored, because grammar rules ignore them too.</p>
+      </div>
+    </section>
+
+    <section class="step">
+      <div class="card">
+        <h2>Result</h2>
+        <div id="result" class="output" aria-live="polite">Enter a grammar and input string, then select Validate String.</div>
+      </div>
+    </section>
+
+    <section class="step">
+      <div class="card">
+        <h2>Derivation</h2>
+        <p class="hint">The highlighted part of each line is what the applied rule just produced.</p>
+        <h3>Leftmost Derivation</h3>
+        <div id="leftmostDerivation" class="output">Leftmost derivation will appear here.</div>
+        <h3>Rightmost Derivation</h3>
+        <div id="rightmostDerivation" class="output">Rightmost derivation will appear here.</div>
+      </div>
+    </section>
+
+    <section class="step">
+      <div class="card">
+        <h2>Parse Tree</h2>
+        <p class="hint"><span class="dot nt"></span> non-terminal &nbsp; <span class="dot t"></span> terminal &nbsp; Scroll sideways if the tree is wide.</p>
+        <div id="parseTree" class="tree output">The parse tree will appear here.</div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer>CFG Validator · Membership test · Derivations · Parse tree</footer>
+  <script src="app.js"></script>
 </body>
-
 </html>
